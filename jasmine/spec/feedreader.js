@@ -50,13 +50,29 @@ $(function() {
 
     /* This is a new test suite to manage menu visibility */
     describe('The menu', function() {
-
+        /* Custom matcher which returns the classes of a DOM element */
+        beforeEach(function() {
+            jasmine.addMatchers({
+                toHaveClass: function(util) {
+                    return {
+                        compare: function(actual, className) {
+                        var passed = actual.hasClass(className);
+                        return {
+                            pass: passed,
+                            message: 'Expected ' + actual + (passed ? '' : ' not') + ' to equal ' + className
+                        };
+                        }
+                    };
+                }
+            });
+        });
 
         /* TODO: Write a test that ensures the menu element is
          * hidden by default. You'll have to analyze the HTML and
          * the CSS to determine how we're performing the
          * hiding/showing of the menu element.
          */
+
 
          /* TODO: Write a test that ensures the menu changes
           * visibility when the menu icon is clicked. This test
