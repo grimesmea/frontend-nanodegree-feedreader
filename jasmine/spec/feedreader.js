@@ -115,10 +115,30 @@ $(function() {
         });
     });
 
-    /* TODO: Write a new test suite named "New Feed Selection"
-
-        /* TODO: Write a test that ensures when a new feed is loaded
-         * by the loadFeed function that the content actually changes.
-         * Remember, loadFeed() is asynchronous.
+    /* Test suite for testing the functionality of the loadFeed function when a
+     * new feed is selected.
+     */
+    describe('New Feed Selection', function() {
+        /* Before each spec is the suite is run, stores the text of all elements
+         * of class entry and loads the feed at index 1 of the allFeeds array.
          */
+        beforeEach(function(done) {
+          feedText = $('.entry').text();
+          loadFeed(1, done);
+        });
+
+        /* After each spec in the suite is run, loads the feed at index 0 of the
+         * allFeeds array, which is the default feed loaded by the page.
+         */
+        afterEach(function(done) {
+          loadFeed(0, done);
+        });
+
+        /* Test that checks that content changes when a new feed is loaded using
+         * the loadFeed function.
+         */
+        it('changes content', function() {
+          expect($('.entry').text()).not.toEqual(feedText);
+        });
+    });
 }());
