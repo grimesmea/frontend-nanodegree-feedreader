@@ -26,18 +26,14 @@ $(function() {
       expect(allFeeds.length).not.toBe(0);
     });
 
-    /* Test loops through each feed in the allFeeds object and ensures it
-     * has a URL defined and that the URL is not empty.
-     */
+    /* Test checks that each feed in the allFeeds array has a URL defined. */
     it('have URLs', function() {
       for(var feed in allFeeds) {
           expect(allFeeds[feed].url).toBeDefined();
       }
     });
 
-    /* Test loops through each feed in the allFeeds object and ensures it
-     * has a name defined and that the name is not empty.
-     */
+    /* Test checks that each feed in the allFeeds array has a name defined. */
     it('have names', function() {
       for(var feed in allFeeds) {
         expect(allFeeds[feed].name).toBeDefined();
@@ -67,7 +63,7 @@ $(function() {
       });
     });
 
-     /* Test that ensures the menu element is hidden by default. */
+    /* Test that ensures the menu element is hidden by default. */
     it('is hidden by default', function() {
       expect($('body')).toHaveClass('menu-hidden');
     });
