@@ -35,7 +35,7 @@ $(function() {
       }
     });
 
-    /* Test  loops through each feed in the allFeeds object and ensures it
+    /* Test loops through each feed in the allFeeds object and ensures it
      * has a name defined and that the name is not empty.
      */
     it('have names', function() {
@@ -45,11 +45,14 @@ $(function() {
     });
   });
 
-  /* This is a new test suite to manage menu visibility */
+  /* Test suite that checks menu visibility. */
   describe('The menu', function() {
-    /* Custom matcher which returns the classes of a DOM element */
+    /* Adds a custom matcher before each spec in the suite is run. */
     beforeEach(function() {
       jasmine.addMatchers({
+        /* Custom matcher that compares the actual class of a DOM element to an
+         * expected class.
+         */
         toHaveClass: function(util) {
           return {
             compare: function(actual, className) {
@@ -69,11 +72,11 @@ $(function() {
       expect($('body')).toHaveClass('menu-hidden');
     });
 
-    /* This is a  nested suite that checks if the menu visibility changes
+    /* A nested test suite that checks if the menu visibility changes
      * when the menu icon is clicked.
      */
     describe(', when the icon is clicked', function() {
-      /* Clicks menu icon before running each spec */
+      /* Clicks the menu icon before running each spec. */
       beforeEach(function() {
         $('.menu-icon-link').click();
       });
@@ -85,37 +88,38 @@ $(function() {
         expect($('body')).not.toHaveClass('menu-hidden');
       });
 
-      /* Test that ensures the menu element is becomes hidden when
+      /* Test that ensures the menu element is hidden when
        * the menu icon is clicked again.
        */
-      it('but is hidden again', function() {
+      it('and is hidden again', function() {
         expect($('body')).toHaveClass('menu-hidden');
       });
     });
   });
 
-  /* This is a new test suite that checks the loading of feeds using the
-   * Google Feed Reader API.
+  /* Test suite that checks the loading of feeds using the Google Feed Reader
+   * API.
    */
   describe('Initial Entries', function() {
     beforeEach(function(done) {
       loadFeed(0, done);
     });
-    /* Test that ensures when the asynchronous loadFeed function is called
+
+    /* Test checks that when the asynchronous loadFeed function is called
      * and completes its work, there is at least a single .entry element
      * within the .feed container.
      */
-    it('has at least one entry', function(done) {
+    it('have loaded', function(done) {
       expect($('.feed').children().length).toBeGreaterThan(0);
       done();
     });
   });
 
-  /* Test suite for testing the functionality of the loadFeed function when a
+  /* Test suite that checks the functionality of the loadFeed function when a
    * new feed is selected.
    */
   describe('New Feed Selection', function() {
-    /* Before each spec is the suite is run, stores the text of all elements
+    /* Before each spec in the suite is run, stores the text of all elements
      * of class entry and loads the feed at index 1 of the allFeeds array.
      */
     beforeEach(function(done) {
@@ -130,7 +134,7 @@ $(function() {
       loadFeed(0, done);
     });
 
-    /* Test that checks that content changes when a new feed is loaded using
+    /* Test checks that content changes when a new feed is loaded using
      * the loadFeed function.
      */
     it('changes content', function() {
