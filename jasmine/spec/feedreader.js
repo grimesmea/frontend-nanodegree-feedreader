@@ -137,4 +137,43 @@ $(function() {
       expect($('.entry').text()).not.toEqual(feedText);
     });
   });
+
+  /* Test suite that checks the simultaneous loading of more than one feed. */
+  describe('Loading Multiple Feeds', function() {
+    /* Before each spec in the suite is run, stores the text of all elements
+     * of class entry when the feed at index 0 of the allFeeds array is loaded
+     * and when the feed at index 1 of the allFeeds array is loaded. The feeds
+     * at both indexes are then loaded.
+     */
+    beforeEach(function(done) {
+      var done1, done2 = false;
+
+      var cb1 = function() {
+        feedText1 = $('.entry').text();
+        loadFeed(1, cb2);
+      };
+
+      var cb2 = function() {
+        feedText2 = $('.entry').text();
+        loadFeed([0,1], done);
+      };
+
+      loadFeed(0, cb1);
+
+    });
+
+    /* After each spec in the suite is run, loads the feed at index 0 of the
+     * allFeeds array, which is the default feed loaded by the page.
+     */
+    afterEach(function(done) {
+      loadFeed(0, done);
+    });
+
+    /* Test checks that the content of both feeds are loaded when an array is
+     * passed into the loadFeed funcion.
+     */
+    it('loads the contents of both feeds', function() {
+      expect($('.entry').text()).toEqual(feedText1 + feedText2);
+    });
+  });
 }());
