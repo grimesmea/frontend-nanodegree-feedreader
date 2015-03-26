@@ -10,6 +10,17 @@ Source code available at https://github.com/grimesmea/frontend-nanodegree-feedre
 
 Just visit http://grimesmea.github.io/frontend-nanodegree-feedreader/. After the page has loaded, the Jasmine test results will be displayed at the bottom of the page.
 
+## What future functionality is tested for?
+
+The "Loading Multiple Feeds" test suite tests the potential future functionality
+of loading multiple feeds concurrently.
+
+This functionality would work by passing an array of feed indexes to loadFeed().
+
+Currently the "Loading Multiple Feeds" test suite produces a failure as well as
+timing out the async callback. This timeout should be remedied once passing
+loadFeed() an array does not produce and error.
+
 ## Resources and Acknowledgements
 
 http://jasmine.github.io/2.1/introduction.html  
