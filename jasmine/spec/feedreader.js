@@ -26,17 +26,21 @@ $(function() {
       expect(allFeeds.length).not.toBe(0);
     });
 
-    /* Test checks that each feed in the allFeeds array has a URL defined. */
+    /* Test checks that each feed in the allFeeds array has a URL defined and
+     * and not null. */
     it('have URLs', function() {
       for(var feed in allFeeds) {
-          expect(allFeeds[feed].url).toBeDefined();
+        expect(allFeeds[feed].url).toBeDefined();
+        expect(allFeeds[i].url.length).not.toBe(0);
       }
     });
 
-    /* Test checks that each feed in the allFeeds array has a name defined. */
+    /* Test checks that each feed in the allFeeds array has a name defined and
+     * not null. */
     it('have names', function() {
       for(var feed in allFeeds) {
         expect(allFeeds[feed].name).toBeDefined();
+        expect(allFeeds[i].name.length).not.toBe(0);
       }
     });
   });
